@@ -6,13 +6,11 @@
 #include <ctime>
 
 using namespace std;
-
+int matan();
 int main(){
-int col;
-char ch,k=true,f;
-char qw[50], an1[30], an2[30], an3[30], anT[30],d[20],g[1];
+char ch,k0=true,k1=true;
 setlocale(LC_ALL, "Russian");
-while (k==true){
+while (k0==true){
 system("cls");
 printf("1. Начать тестирование\n");
 printf("2. Unit-Tests\n");
@@ -31,24 +29,72 @@ cin>>ch;
 	}
 switch(ch) {
 case '1':
-	system("cls");
+		system("cls");
+		while (k1==true){
+			system("cls");
+			printf("1. Математика\n");
+			printf("2. История\n");
+			printf("3. Выход из тестирования\n");
+			cout<<"Ваш выбор: ";
+			cin>>ch;
+				if(ch!='1' and ch!='2' and ch!='3'){
+					while(ch!='1' and ch!='2' and ch!='3'){
+						system("cls");
+						printf("1. Математика\n");
+						printf("2. История\n");
+						printf("3. Выход из тестирования\n");
+						cout<<"Ваш выбор: ";
+						cin>>ch;
+						}
+					}
+		switch(ch) {
+				case '1':
+					system("cls");
+					matan();
+					break;
+				case '2':
+					break;
+				case '3':
+					k1=false;
+					break;
+				default:
+					break;
+			}
+		}
+   break;
+   
+case '2':
+   break;
+   
+case '3':
+	k0=false;
+   break;
+   
+default:
+	printf("Твой выбор еще не сделан..\n");
+ 	 }
+	}
+system ("PAUSE");
+}
+
+int matan(){
+	char qw[50], an1[30], an2[30], an3[30], anT[30],d[20],g[200];
+	int col=0,score=0;
+	char f;
 	FILE *fl;
-	fl=fopen("Q.txt","r");
+	fl=fopen("Matan.txt","r");
 	while((f=fgetc(fl))!=EOF){
 		if(f=='№'){
-			g[0]=fgetc(fl);
-			printf("%s\n",g);
-			col=atoi(g);
-			printf("%d",col);
+		col++;
 		}
 	}
-	system("pause");
 	fseek(fl,0,SEEK_SET);
-	for(int i=0;i<2;i++){
+	for(int i=0;i<col;i++){
 	fgets(qw,50,fl);
 		if(qw[1]=='/'){
 		fgets(qw,50,fl);	
 		}
+		system("cls");
 	printf("%s",qw);
 	fgets(an1,50,fl);
 	printf("%s",an1);
@@ -57,26 +103,14 @@ case '1':
 	fgets(an3,50,fl);
 	printf("%s",an3);
 	fgets(anT,50,fl);
-	printf("%s\n",anT);
 	cin>>d;
 	if(d[0]==anT[6]){
-		printf("YES!\n");
+		score++;
 		}
 	}
+	system("cls");
+	printf("Количество баллов:%d\n",score);
+	score=0;
 	fclose(fl);
-	system("pause");
-   break;
-   
-case '2':
-   break;
-   
-case '3':
-	k=false;
-   break;
-   
-default:
-	printf("Твой выбор еще не сделан..\n");
- 	 }
-	}
-system ("PAUSE");
+	system("pause");	
 }

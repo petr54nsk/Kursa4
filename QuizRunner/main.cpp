@@ -78,8 +78,8 @@ system ("PAUSE");
 }
 
 int matan(){
-	char qw[50], an1[30], an2[30], an3[30], anT[30],d[20],g[200];
-	int col=0,score=0;
+	char qw[300], an1[300], an2[300], an3[300], anT[30],d[20],g[200];
+	int col=0,score=0,A[30],error=0,er=0;
 	char f;
 	FILE *fl;
 	fl=fopen("Matan.txt","r");
@@ -90,26 +90,50 @@ int matan(){
 	}
 	fseek(fl,0,SEEK_SET);
 	for(int i=0;i<col;i++){
-	fgets(qw,50,fl);
-		if(qw[1]=='/'){
-		fgets(qw,50,fl);	
+	fgets(qw,300,fl);
+		if(qw[1]=='#'){
+		fgets(qw,300,fl);	
 		}
 		system("cls");
 	printf("%s",qw);
-	fgets(an1,50,fl);
+	fgets(an1,300,fl);
 	printf("%s",an1);
-	fgets(an2,50,fl);
+	fgets(an2,300,fl);
 	printf("%s",an2);
-	fgets(an3,50,fl);
+	fgets(an3,300,fl);
 	printf("%s",an3);
-	fgets(anT,50,fl);
-	cin>>d;
+	fgets(anT,300,fl);
+	printf("Введите ответ:");
+	cin>>d[0];
+		while(d[0]!='1' and d[0]!='2' and d[0]!='3'){
+		printf("Введите ответ:");
+		cin>>d[0];
+	}
 	if(d[0]==anT[6]){
 		score++;
+		}
+		else{
+					A[er]=i+1;
+					error++;
+					er++;
 		}
 	}
 	system("cls");
 	printf("Количество баллов:%d\n",score);
+	if(score<(col/2)){
+		printf("Ваши знания по математике ниже среднего.\n");
+	}
+	else if (score>(col/2) && score<col-(col/4)){
+		printf("Ваши знания по математике среднего уровня.\n");
+	}
+	else{
+		printf("Ваши знания по математике высокого уровня.\n");
+	}
+	printf("Вопросы в которых допущена ошибка:");
+	for(int i=0; i<error;i++){
+		printf(" %d",A[i]);
+	}
+	printf("\n");
 	score=0;
 	fclose(fl);
 	system("pause");	

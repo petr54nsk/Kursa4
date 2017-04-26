@@ -82,8 +82,8 @@ system ("PAUSE");
 
 int matan(){
 	srand(time(NULL));
-	char qw[300], an1[300], an2[300], an3[300], anT[30],d[20],g[200];
-	int col=0, score=0, error=0, er=0, M[3]={}, A[30], m, q=1;
+	char qw[300], an1[300], an2[300], an3[300], g[200];
+	int col=0, score=0, error=0, M[3]={}, A[31], m, q=1,z=0,d=0;
 	char f;
 	FILE *fl;
 	fl=fopen("Matan.txt","r");
@@ -104,8 +104,6 @@ int matan(){
 	}
 	fseek(fl,0,SEEK_SET);
 	for(int i=0;i<col;i++){
-		cout<<score<<endl;
-		system("pause");
 		fgets(qw,300,fl);
 		if(qw[1]=='#'){
 		fgets(qw,300,fl);	
@@ -118,13 +116,13 @@ int matan(){
 	fgets(an2,300,fl);
 	fseek(fl,2,SEEK_CUR);
 	fgets(an3,300,fl);
-	fgets(anT,300,fl);
 		while(q!=4){
 			m=rand()%3+1;
 			if(m==1){
 				if(M[0]==0){
 					printf("%i.%s",q,an1);
 					M[0]=1;
+					z=q;
 					q++;
 				}
 			}
@@ -145,24 +143,23 @@ int matan(){
 		}
 		for(int k=0;k<3;k++){
 			M[k]=0;
-			printf("%d ",M[k]);
 		}
 		q=1;
-		printf("ukazatel:%c\n",anT[6]);
 		printf("Введите ответ:");
-		cin>>d[0];
-			while(d[0]!='1' and d[0]!='2' and d[0]!='3'){
+		cin>>d;
+			while(d!=1 and d!=2 and d!=3){
 				printf("Введите ответ:");
-				cin>>d[0];
+				cin>>d;
 		}
-		if(d[0]==anT[6]){
+		if(d==z){
 			score++;
 			}
 			else{
-					A[er]=i+1;
 					error++;
-					er++;
+					A[error]=i+1;
 			}
+			printf("Element:%d\n Error: %d",error,A[error]);
+			system("pause");
 	}
 	system("cls");
 	printf("Количество баллов:%d\n",score);
@@ -175,11 +172,11 @@ int matan(){
 			else{
 				printf("Ваши знания по математике высокого уровня.\n");
 			}
-	if(error=0){
+	if(error==0){
 	}
 		else{
 		printf("Вопросы в которых допущена ошибка:");
-			for(int i=0; i<error;i++){
+			for(int i=1;i<error+1;i++){
 				printf(" %d",A[i]);
 				}
 		}

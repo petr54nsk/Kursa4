@@ -11,8 +11,8 @@ using namespace std;
 int main(){
 srand(time(NULL));
 FILE *fl;
-int A[31]={},error=0,col=0,n=0,j=0;
-char ch,k0=true,k1=true,buf[225];
+int A[31]={},error=0,col=0,n=0,j=0,w=0;
+char ch,k0=true,k1=true,k2=true,buf[225];
 struct tm * timeinfo;
 setlocale(LC_ALL, "Russian");
 while (k0==true){
@@ -85,27 +85,62 @@ case '1':
 					break;
 			}
 		}
-   break;
-   
+ 
 case '2':
    break;
    
 case '3':
-	fl=fopen("Statistics.txt","r");
-	while(!feof(fl)){
-		fgets(buf,220,fl);
-		if(!feof(fl)){
-			printf("%s",buf);
-				if(buf[3]=='='){
-					system("pause");
-					system("cls");
+		k2=true;
+		while(k2==true){
+			system("cls");
+			printf("1. Просмотр статистики.\n");
+			printf("2. Очистка статистики.\n");
+			printf("3. Вернуться назад.\n");
+			cout<<"Ваш выбор: ";
+			cin>>ch;	
+				switch(ch){
+					case '1':
+							system("cls");
+							w=0;
+							fl=fopen("Statistics.txt","r");
+							if(fl==NULL){
+								printf("Данных статистики еще нету.\n");
+								system("pause");
+								break;
+							}
+							while(!feof(fl)){
+								fgets(buf,220,fl);
+								if(!feof(fl)){
+									printf("%s",buf);
+										if(buf[3]=='='){
+											system("pause");
+											system("cls");
+											w++;
+										}
+								}
+								if(feof(fl) and w==0){
+										system("pause");
+										}
+							}
+							fclose(fl);
+						   break;
+						   
+					case '2':
+							remove("Statistics.txt");
+							break;
+							
+					case '3':
+							k2=false;
+							break;
+							
+					default: 
+							system("cls");
+							printf("Думай лучше....\n");
+							system("pause");
+							break;
+						}
 				}
-		}
-	}
-	fclose(fl);
-	system("pause");
-   break;
-   
+			break;
 case '4':
 	k0=false;
 	if(j==1){
@@ -119,7 +154,7 @@ default:
 	system("cls");
 	printf("Твой выбор еще не сделан..\n");
 	system("pause");
- 	 }
+	break;
+ 	   }
 	}
-system ("PAUSE");
 }

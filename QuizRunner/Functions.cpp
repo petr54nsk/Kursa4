@@ -90,8 +90,8 @@ int Stat(int *, int , int , int);
 		}
 		system("cls");
 		printf(" оличество баллов:%d\n",score);
-		if(score<(col/2)){
-			printf("¬аши знани€ по математике ниже среднего.\n");
+		if(score<((col/2)+1)){
+			printf("¬аши знани€ по математике ниже среднего уровн€.\n");
 		}
 			else if (score>(col/2) && score<col-(col/4)){
 				printf("¬аши знани€ по математике среднего уровн€.\n");

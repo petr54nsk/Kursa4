@@ -5,7 +5,7 @@
 #include <iostream>
 #include <ctime>
 #include "Functions.cpp"
-
+int g=0;
 using namespace std;
 //=============================
 int main(){
@@ -73,9 +73,6 @@ case '1':
 					
 				case '4':
 					k1=false;
-					fl=fopen("Statistics.txt","a+");
-					fprintf(fl,"\n===========================================\n");
-					fclose(fl);
 					break;
 					
 				default:
@@ -95,6 +92,9 @@ case '3':
    
 case '4':
 	k0=false;
+	fl=fopen("Statistics.txt","a+");
+	fprintf(fl,"\n===========================================\n");
+	fclose(fl);
    break;
    
 default:

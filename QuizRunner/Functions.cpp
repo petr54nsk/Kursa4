@@ -5,7 +5,9 @@
 #include <math.h>
 #include <conio.h>
 using namespace std;
-int Stat(int *, int , int );
+extern int g;
+
+int Stat(int *, int , int , int);
 
 	int QTest(int *A, int n){
 		srand(time(NULL));
@@ -16,17 +18,13 @@ int Stat(int *, int , int );
 		
 		if(n==0){fl=fopen("Matan.txt","r");}
 		if(n==1){fl=fopen("History.txt","r");}
-		if(n==2){fl=fopen("Proggram.txt","r");}
+		if(n==2){fl=fopen("Programm.txt","r");}
 		
-		if(fl!=NULL){
-			printf("Файл успешно открыт.\n");
-			system("pause");
-		}
-			else{
+		if(fl==NULL){
 				printf("Файл не был открыт.\n");
 				system("pause");
 				return 0;
-			}
+		}
 		while(!feof(fl)){
 			f=fgetc(fl);
 			if(f=='№'){
@@ -86,8 +84,8 @@ int Stat(int *, int , int );
 				score++;
 				}
 				else{
-						A[error]=i+1;
 						error++;
+						A[error]=i+1;
 				}
 		}
 		system("cls");
@@ -112,33 +110,39 @@ int Stat(int *, int , int );
 		printf("\n");
 		score=0;
 		fclose(fl);
-		Stat(A,col,error);
+		Stat(A,col,error,n);
 		system("pause");	
 }
-
-	int Stat(int *A,int col, int error){
-		   FILE *fl;//наЧАЛО функции
+	int Stat(int *A,int col, int error, int n){
+		   FILE *fl;
    			time_t data;
    			struct tm * timeinfo;
    			char buf[100];
    			time(&data);
    			timeinfo = localtime(&data);
-   			//if(g!=0){
-   				strftime(buf,100,"Data:%x Time:%I:%M%p. ",timeinfo);
-   			//}
+   			strftime(buf,100,"Data:%x Time:%H.%M ",timeinfo);
    			fl=fopen("Statistics.txt","a+");
 			   if(fl==NULL){
 			   	printf("Файл не открыт.\n");
+			   	system("pause");
+			   	return 0;
 			   }
-					else{
-						printf("Файл открыт успешно.\n");
-					}
-			fputs(buf,fl);
-			fprintf(fl,"\nМатематика:: Правильных ответов:%d Неправильных ответов:%d \nВопросы в которых допущена ошибка:",(col-error),error);
+			   if(g==0){
+				fputs(buf,fl);
+				g++;
+			  }
+			  if(n==0){
+			  fprintf(fl,"\nМатематика:: ");
+			}
+			else if(n==1){
+			  fprintf(fl,"\nИстория:: ");
+			}
+			else if(n==2){
+			  fprintf(fl,"\nПрограммирование:: ");
+			}
+			fprintf(fl,"Правильных ответов:%d|Неправильных ответов:%d \nВопросы в которых допущена ошибка:",(col-error),error);
 				for(int i=0;i<error;i++){
 					fprintf(fl," №:%d",A[i+1]);
 				}
-			//fprintf(fl,"\n===========================================\n");
-			system("pause");
 			fclose(fl);
 }

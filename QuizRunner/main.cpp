@@ -94,7 +94,13 @@ case '3':
 	fl=fopen("Statistics.txt","r");
 	while(!feof(fl)){
 		fgets(buf,220,fl);
-		printf("%s",buf);
+		if(!feof(fl)){
+			printf("%s",buf);
+				if(buf[3]=='='){
+					system("pause");
+					system("cls");
+				}
+		}
 	}
 	fclose(fl);
 	system("pause");

@@ -11,8 +11,8 @@ using namespace std;
 int main(){
 srand(time(NULL));
 FILE *fl;
-int A[31]={},error=0,col=0,n=0;
-char ch,k0=true,k1=true;
+int A[31]={},error=0,col=0,n=0,j=0;
+char ch,k0=true,k1=true,buf[225];
 struct tm * timeinfo;
 setlocale(LC_ALL, "Russian");
 while (k0==true){
@@ -47,6 +47,7 @@ case '1':
 						}
 						n=0;
 					QTest(A,n);
+					j=1;
 					break;
 					
 				case '2':
@@ -58,6 +59,7 @@ case '1':
 						}
 						n=1;
 					QTest(A,n);
+					j=1;
 					break;
 					
 				case '3':
@@ -69,6 +71,7 @@ case '1':
 						}
 						n=2;
 					QTest(A,n);
+					j=1;
 					break;
 					
 				case '4':
@@ -88,13 +91,22 @@ case '2':
    break;
    
 case '3':
+	fl=fopen("Statistics.txt","r");
+	while(!feof(fl)){
+		fgets(buf,220,fl);
+		printf("%s",buf);
+	}
+	fclose(fl);
+	system("pause");
    break;
    
 case '4':
 	k0=false;
-	fl=fopen("Statistics.txt","a+");
-	fprintf(fl,"\n===========================================\n");
-	fclose(fl);
+	if(j==1){
+		fl=fopen("Statistics.txt","a+");
+		fprintf(fl,"\n===========================================\n");
+		fclose(fl);
+		}
    break;
    
 default:

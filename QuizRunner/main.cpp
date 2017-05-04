@@ -101,7 +101,6 @@ case '3':
 				switch(ch){
 					case '1':
 							system("cls");
-							w=0;
 							fl=fopen("Statistics.txt","r");
 							if(fl==NULL){
 								printf("Данных статистики еще нету.\n");
@@ -113,12 +112,25 @@ case '3':
 								if(!feof(fl)){
 									printf("%s",buf);
 										if(buf[3]=='='){
-											system("pause");
+											printf("Для выхода нажмите 'Q'.\nДля продолжения нажмите клавишу 'N'.");
+											w=0;
+											while(1){
+											ch=getch();
+												if(ch=='q'){
+														w=1;
+														break;
+													}
+												if(ch=='n'){
+													break;
+												}
+											}
+											if(w==1){
+												break;
+											}
 											system("cls");
-											w++;
 										}
 								}
-								if(feof(fl) and w==0){
+								if(feof(fl)){
 										system("pause");
 										}
 							}

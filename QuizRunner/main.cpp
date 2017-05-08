@@ -22,7 +22,7 @@ printf("2. Unit-Tests\n");
 printf("3. Статистика\n");
 printf("4. Выход из программы\n");
 cout<<"Ваш выбор: ";
-cin>>ch;
+ch=getch();
 
 switch(ch) {
 case '1':
@@ -35,7 +35,7 @@ case '1':
 			printf("3. Программирование\n");
 			printf("4. Выход из тестирования\n");
 			cout<<"Ваш выбор: ";
-			cin>>ch;
+			ch=getch();
 			
 		switch(ch) {
 				case '1':
@@ -97,7 +97,7 @@ case '3':
 			printf("2. Очистка статистики.\n");
 			printf("3. Вернуться назад.\n");
 			cout<<"Ваш выбор: ";
-			cin>>ch;	
+			ch=getch();	
 				switch(ch){
 					case '1':
 							system("cls");

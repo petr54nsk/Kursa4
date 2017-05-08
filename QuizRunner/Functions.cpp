@@ -11,8 +11,8 @@ int Stat(int *, int , int , int);
 
 	int QTest(int *A, int n){
 		srand(time(NULL));
-		char qw[300], an1[300], an2[300], an3[300], g[200];
-		int score=0, M[3]={}, m, q=1,z=0,d=0,col=0,error=0;
+		char qw[300], an1[300], an2[300], an3[300], g[200],d;
+		int score=0, M[3]={}, m, q=1,z=0,dI,col=0,error=0;
 		char f;
 		FILE *fl;
 		
@@ -74,13 +74,18 @@ int Stat(int *, int , int , int);
 				M[k]=0;
 			}
 			q=1;
+			printf("ƒл€ выхода из тестировани€ нажмите 'Q'.\n");
 			printf("¬ведите ответ:");
-			cin>>d;
-				while(d!=1 and d!=2 and d!=3){
-					printf("¬ведите ответ:");
-					cin>>d;
+			d=getch();
+			if(d=='q'){
+				return 0;
 			}
-			if(d==z){
+				while(d!='1' and d!='2' and d!='3'){
+					d=getch();
+			}
+			dI=0;
+			dI=dI*10+d-0x30;
+			if(dI==z){
 				score++;
 				}
 				else{

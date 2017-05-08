@@ -6,14 +6,19 @@
 #include <conio.h>
 using namespace std;
 extern int g;
+clock_t start, end;
 
-int Stat(int *, int , int , int);
+int Stat(int *, int , int , int, int);
 
 	int QTest(int *A, int n){
+		start=clock();
 		srand(time(NULL));
-		char qw[300], an1[300], an2[300], an3[300], g[200],d;
-		int score=0, M[3]={}, m, q=1,z=0,dI,col=0,error=0;
-		char f;
+		char qw[300], an1[300], an2[300], an3[300], g[200];
+		char f,d;
+		int score=0,q=1,z=0,col=0,error=0;
+		int m,dI,timeq;
+		int M[3]={};
+		float timeQ;
 		FILE *fl;
 		
 		if(n==0){fl=fopen("Matan.txt","r");}
@@ -93,7 +98,11 @@ int Stat(int *, int , int , int);
 						A[error]=i+1;
 				}
 		}
+		end=clock();
+		timeQ=((double) end - start) / ((double) CLOCKS_PER_SEC);
+		timeq=(int)timeQ;
 		system("cls");
+		printf("Затраченное время:%.1f секунд\n",timeQ);
 		printf("Количество баллов:%d\n",score);
 		if(score<((col/2)+1)){
 			printf("Ваши знания по математике ниже среднего уровня.\n");
@@ -115,10 +124,10 @@ int Stat(int *, int , int , int);
 		printf("\n");
 		score=0;
 		fclose(fl);
-		Stat(A,col,error,n);
+		Stat(A,col,error,n,timeq);
 		system("pause");	
 }
-	int Stat(int *A,int col, int error, int n){
+	int Stat(int *A,int col, int error, int n, int timeq){
 		   FILE *fl;
    			time_t data;
    			struct tm * timeinfo;
@@ -149,5 +158,6 @@ int Stat(int *, int , int , int);
 				for(int i=0;i<error;i++){
 					fprintf(fl," №:%d",A[i+1]);
 				}
+				fprintf(fl,"\nВремя потраченное на тест: %d секунд.",timeq);
 			fclose(fl);
 }

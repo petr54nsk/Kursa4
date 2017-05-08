@@ -139,6 +139,9 @@ case '3':
 						   
 					case '2':
 							remove("Statistics.txt");
+							system("cls");
+							printf("Статистика обнулена.\n");
+							system("pause");
 							break;
 							
 					case '3':

@@ -101,7 +101,7 @@ case '3':
 				switch(ch){
 					case '1':
 							system("cls");
-							fl=fopen("Statistics.txt","r");
+							fl=fopen("./Bin/Statistics","r");
 							if(fl==NULL){
 								printf("Данных статистики еще нету.\n");
 								system("pause");
@@ -138,7 +138,7 @@ case '3':
 						   break;
 						   
 					case '2':
-							remove("Statistics.txt");
+							remove("./Bin/Statistics");
 							system("cls");
 							printf("Статистика обнулена.\n");
 							system("pause");
@@ -159,7 +159,7 @@ case '3':
 case '4':
 	k0=false;
 	if(j==1){
-		fl=fopen("Statistics.txt","a+");
+		fl=fopen("./Bin/Statistics","a+");
 		fprintf(fl,"\n===========================================\n");
 		fclose(fl);
 		}

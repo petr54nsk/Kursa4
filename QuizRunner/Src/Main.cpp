@@ -1,10 +1,4 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <math.h>
-#include <conio.h>
-#include <iostream>
-#include <ctime>
-#include "Functions.cpp"
+#include "Functions.h"
 int g=0;
 using namespace std;
 //=============================
@@ -101,7 +95,7 @@ case '3':
 				switch(ch){
 					case '1':
 							system("cls");
-							fl=fopen("./Bin/Statistics","r");
+							fl=fopen("../Bin/Statistics","r");
 							if(fl==NULL){
 								printf("Данных статистики еще нету.\n");
 								system("pause");
@@ -138,7 +132,7 @@ case '3':
 						   break;
 						   
 					case '2':
-							remove("./Bin/Statistics");
+							remove("../Bin/Statistics");
 							system("cls");
 							printf("Статистика обнулена.\n");
 							system("pause");
@@ -159,7 +153,7 @@ case '3':
 case '4':
 	k0=false;
 	if(j==1){
-		fl=fopen("./Bin/Statistics","a+");
+		fl=fopen("../Bin/Statistics","a+");
 		fprintf(fl,"\n===========================================\n");
 		fclose(fl);
 		}

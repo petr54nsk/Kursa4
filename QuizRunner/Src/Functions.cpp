@@ -1,9 +1,4 @@
-#include <iostream>
-#include <ctime>
-#include <stdlib.h>
-#include <stdio.h>
-#include <math.h>
-#include <conio.h>
+#include "Functions.h"
 using namespace std;
 extern int g;
 clock_t start, end;
@@ -21,9 +16,9 @@ int Stat(int *, int , int , int, int);
 		float timeQ;
 		FILE *fl;
 		
-		if(n==0){fl=fopen("./Questions/Matan","r");}
-		if(n==1){fl=fopen("./Questions/History","r");}
-		if(n==2){fl=fopen("./Questions/Programm","r");}
+		if(n==0){fl=fopen("../Questions/Matan","r");}
+		if(n==1){fl=fopen("../Questions/History","r");}
+		if(n==2){fl=fopen("../Questions/Programm","r");}
 		
 		if(fl==NULL){
 				printf("Файл не был открыт.\n");
@@ -135,7 +130,7 @@ int Stat(int *, int , int , int, int);
    			time(&data);
    			timeinfo = localtime(&data);
    			strftime(buf,100,"Data:%x Time:%H.%M ",timeinfo);
-   			fl=fopen("./Bin/Statistics","a+");
+   			fl=fopen("../Bin/Statistics","a+");
 			   if(fl==NULL){
 			   	printf("Файл не открыт.\n");
 			   	system("pause");

@@ -25,6 +25,7 @@ int main()
 	Color Acolor(152,245,255);
 	Color Mcolor(135,206,250);
 	Color Scolor(30,144,255);
+	
 	Text Text1, Text2, Text3, Text1S, Text2S, Text3S, Text_S_Er, TextPrS, TextEx_S, Text1T, Text2T, Text3T, Text4T;
 /////// Название кнопок главного меню ......		
 	Text1.setFont(font);

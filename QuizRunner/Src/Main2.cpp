@@ -20,7 +20,7 @@ int main()
 	
 ///// Работа с текстом ///////////
 	Font font;
-	font.loadFromFile("arialbd.ttf");
+	font.loadFromFile("./Font/arialbd.ttf");
 	
 	Color Acolor(152,245,255);
 	Color Mcolor(135,206,250);
@@ -108,17 +108,17 @@ int main()
 	
 	Image icon;
 	
-	icon.loadFromFile("icon1.png");
+	icon.loadFromFile("./Texture/icon1.png");
 	
 	Texture fon,button,message,fonS;
 	
-	message.loadFromFile("message.jpg");
-	fon.loadFromFile("Fon3.jpg");
-	fonS.loadFromFile("Fon3S.jpg");
-	button.loadFromFile("Button.png");
+	message.loadFromFile("./Texture/message.jpg");
+	fon.loadFromFile("./Texture/Fon3.jpg");
+	fonS.loadFromFile("./Texture/Fon3S.jpg");
+	button.loadFromFile("./Texture/Button.png");
 	Mwindow.setIcon(32,32,icon.getPixelsPtr());
 ///// Работа с кнопками и фоном ///////////
-	sf::Clock clock;
+	Clock clock;
 		
 	Sprite Fon, FonS, Button1, Button2, Button3, Button4, Message;
 	
@@ -205,7 +205,27 @@ int main()
 										A[i]=0;
 									}
 							n = 0;
-							QTest(A,n);
+							QTest(A,n,Mwindow);
+							j = 1;
+						}
+						if(menuTest==2){
+							error = 0;
+							col = 0;
+									for(int i=0;i<31;i++){
+										A[i]=0;
+									}
+							n = 1;
+							QTest(A,n,Mwindow);
+							j = 1;
+						}
+						if(menuTest==3){
+							error = 0;
+							col = 0;
+									for(int i=0;i<31;i++){
+										A[i]=0;
+									}
+							n = 2;
+							QTest(A,n,Mwindow);
 							j = 1;
 						}
 						if(menuTest==4){
@@ -363,7 +383,8 @@ int main()
 								}
 							}
 							else {
-								remove("../Bin/Statistics");
+								fl=fopen("../Bin/Statistics","w");
+								fclose(fl);
 								Text_S_Er.setString("Статистика обнулена.\n       Нажмите Q.");
 								Text_S_Er.setPosition(40,20);
 								RenderWindow S_Er_window(sf::VideoMode(300, 100),"Статистика",Style::Titlebar);

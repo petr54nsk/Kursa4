@@ -11,7 +11,9 @@ FILE *test, *fl;
 char buf[225];
 float x = 230,y = 230;
 int main() 
-{
+{ 
+    HWND hWnd = GetConsoleWindow();
+    ShowWindow(hWnd, SW_HIDE);
 	setlocale(LC_ALL,"russian");
 ///// Создание окна ///////////
 	RenderWindow Mwindow(sf::VideoMode(1200, 700), "QuizRunner",Style::Titlebar);

@@ -2,7 +2,7 @@
 #define FUNCTIONS_H
 
 #define SFML_STATIC
-#include <SFML/Graphics.hpp> 
+#include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 #include <iostream>
 #include <ctime>

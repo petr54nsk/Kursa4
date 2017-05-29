@@ -14,7 +14,7 @@ int Stat(int *, int , int , int, int);
 		char qw[300], an1[300], an2[300], an3[300], buf[200],bufT[200];
 		char f;
 		int score=0,q=1,z=0,col=0,error=0,TestAn=0;
-		int m,timeq,poz1,poz2;
+		int m,timeq,poz1,poz2,exit;
 		int M[3]={};
 		int trigger;
 		float timeQ,y=230,x=590;
@@ -36,7 +36,7 @@ int Stat(int *, int , int , int, int);
 		button.loadFromFile("./Texture/Button2.png");
 		button.setSmooth(true);
 /////////////////////////////////////////////		
-		Sprite FonT,Message,Button1,Button2,Button3,FonT2;
+		Sprite FonT,Message,Button1,Button2,Button3,Button4,FonT2;
 		
 		FonT.setTexture(fonT);
 		FonT.setPosition(0,0);
@@ -58,8 +58,12 @@ int Stat(int *, int , int , int, int);
 		Button3.setTexture(button);
 		Button3.scale(Vector2f(0.2f,0.08f));
 		Button3.setPosition(370,550);
+		
+		Button4.setTexture(button);
+		Button4.scale(Vector2f(0.1f,0.08f));
+		Button4.setPosition(900,650);
 ///////////////////////////////////////////////////////		
-		Text TextT,TextA1,TextA2,TextA3,TextEr,TextT_T,TextT_S,TextT_E,TextT_0,TextT_1;
+		Text TextT,TextA1,TextA2,TextA3,TextEr,TextT_T,TextT_S,TextT_E,TextT_0,TextT_1,TextEx;
 		
 		TextT.setFont(font);
 		TextT.setString("NULL");			
@@ -113,6 +117,12 @@ int Stat(int *, int , int , int, int);
 		TextT_1.setColor(Color::Black);
 		TextT_1.setPosition(210,230);
 		
+		TextEx.setFont(font);
+		TextEx.setString("Выход");		
+		TextEx.setCharacterSize(20);
+		TextEx.setColor(Color::Black);
+		TextEx.setPosition(985,658);
+/////////////////////////////////////////////////////		
 		if(n==0){fl=fopen("./Questions/Matan","r");}
 		if(n==1){fl=fopen("./Questions/History","r");}
 		if(n==2){fl=fopen("./Questions/Programm","r");}
@@ -279,11 +289,17 @@ int Stat(int *, int , int , int, int);
 					else if(IntRect(375, 550, 468, 38).contains(Mouse::getPosition(Test))){
 						Button3.setColor(Color::Cyan); TestAn = 3;  
 					}
+					else if(IntRect(900, 650, 238, 38).contains(Mouse::getPosition(Test))){
+						exit=1;
+						TextEx.setColor(Color::Red);
+					}
 					else {
 						Button1.setColor(Color::White);
 						Button2.setColor(Color::White);
 						Button3.setColor(Color::White);
+						TextEx.setColor(Color::Black);
 						TestAn = 0;
+						exit=0;
 					}
 					if (Mouse::isButtonPressed(Mouse::Left) && (TestAn==1 || TestAn==2 || TestAn==3)){
 						clockT.restart();
@@ -292,11 +308,15 @@ int Stat(int *, int , int , int, int);
 						q=1;
 						break;
 					}
+					else if(Mouse::isButtonPressed(Mouse::Left) && exit==1){
+						return 0;
+					}
 					Test.clear();
 					Test.draw(FonT);
 					Test.draw(Button1);
 					Test.draw(Button2);
 					Test.draw(Button3);
+					Test.draw(Button4);
 					if(trigger==true){
 						Test.draw(TextT_0);
 						Test.draw(TextT_1);
@@ -307,6 +327,7 @@ int Stat(int *, int , int , int, int);
 					Test.draw(TextA1);
 					Test.draw(TextA2);
 					Test.draw(TextA3);
+					Test.draw(TextEx);
 					Test.display();
 				}
 				TextA1.setCharacterSize(17);

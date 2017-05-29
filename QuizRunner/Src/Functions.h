@@ -1,5 +1,5 @@
-#ifndef DEPOSIT_H
-#define DEPOSIT_H
+#ifndef FUNCTIONS_H
+#define FUNCTIONS_H
 
 #include <iostream>
 #include <ctime>

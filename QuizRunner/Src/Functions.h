@@ -1,9 +1,6 @@
-#ifndef FUNCTIONS_H
-#define FUNCTIONS_H
+#ifndef DEPOSIT_H
+#define DEPOSIT_H
 
-#define SFML_STATIC
-#include <SFML/Graphics.hpp>
-#include <SFML/Window.hpp>
 #include <iostream>
 #include <ctime>
 #include <stdlib.h>
@@ -13,6 +10,6 @@
 #include <windows.h>
 
 int Stat(int *, int , int , int, int);
-int QTest(int *A, int n, sf::RenderWindow &);
+int QTest(int *A, int n);
 
 #endif
